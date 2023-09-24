@@ -1,0 +1,567 @@
+<!--  All HTML files begin with the following line: -->
+<!doctype html>
+<!-- This indicates that the rest of the lines that follow are to be interpreted as HTML. It tells the browser about what document type to expect. -->
+
+<!-- All text enclosed in angled brackets are known as HTML element tags. There are usually, but not always, starting and closing element "tags", each representing a HTML element.
+The <html> element is known as the root element of a HTML page. All other elements are encased within it. -->
+<html lang="en">
+  <!-- The <head> element contains meta information about the HTML page, information that is not rendered or displayed by the browser -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Black Jack</title>
+    <link rel="stylesheet" href="blackjack.css" />
+    <script src="blackjack.js"></script>
+  </head>
+  <!-- The <title> element specifies a title for the HTML page (which is shown in the browser's title bar or in the page's tab) and is the default name given to a bookmark of a webpage. -->
+  <!-- The <style> element contains information relating to the layout and style of the webpage. The syntax within a <style> tag is referred to as CSS - Cascading Style Sheets. -->
+
+  <!-- Logo -->
+  <body>
+    <h1 style="color: rgb(226, 217, 217)" id="header">
+      &#9824;BlackJack&#9827;
+    </h1>
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Set a default font and background image */
+        body {
+            font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: rgb(20, 19, 19);
+            background-image: url("https://cdn.pixabay.com/photo/2022/06/13/22/32/casino-7260767_1280.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        /* Center the header text */
+        #header {
+            text-align: center;
+            font-size: 2rem;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        /* Container for the content */
+        #container {
+            background-color: rgba(215, 222, 235, 0.687);
+            padding: 20px;
+            border-radius: 4px;
+            text-align: center;
+            max-width: 800px;
+            width: 90%;
+        }
+
+        /* Input and button styles */
+        input {
+            font-size: 1rem;
+            padding: 10px;
+            width: 100%;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            font-size: 1rem;
+            padding: 10px 20px;
+            background-color: #111;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        /* Add more responsive styles here */
+        @media (max-width: 768px) {
+            body {
+                font-size: 14px;
+            }
+            #header {
+                font-size: 1.5rem;
+            }
+            /* Add more responsive styles as needed */
+        }
+
+        @media (max-width: 480px) {
+            body {
+                font-size: 12px;
+            }
+            #header {
+                font-size: 1.2rem;
+            }
+            /* Adjust styles for smaller screens */
+        }
+
+      .glow-on-hover {
+        width: 220px;
+        height: 50px;
+        border: none;
+        outline: none;
+        color: #fff;
+        background: #111;
+        cursor: pointer;
+        position: relative;
+        z-index: 0;
+        border-radius: 10px;
+      }
+
+      .glow-on-hover:before {
+        content: "";
+        background: linear-gradient(
+          45deg,
+          #ff0000,
+          #ff7300,
+          #fffb00,
+          #48ff00,
+          #00ffd5,
+          #002bff,
+          #7a00ff,
+          #ff00c8,
+          #ff0000
+        );
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        background-size: 400%;
+        z-index: -1;
+        filter: blur(5px);
+        width: calc(100% + 4px);
+        height: calc(100% + 4px);
+        animation: glowing 20s linear infinite;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+        border-radius: 10px;
+      }
+
+      .glow-on-hover:active {
+        color: #000;
+      }
+
+      .glow-on-hover:active:after {
+        background: transparent;
+      }
+
+      .glow-on-hover:hover:before {
+        opacity: 1;
+      }
+
+      .glow-on-hover:after {
+        z-index: -1;
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #111;
+        left: 0;
+        top: 0;
+        border-radius: 10px;
+      }
+
+      @keyframes glowing {
+        0% {
+          background-position: 0 0;
+        }
+        50% {
+          background-position: 400% 0;
+        }
+        100% {
+          background-position: 0 0;
+        }
+      }
+
+      body {
+        background-image: url("https://cdn.pixabay.com/photo/2022/06/13/22/32/casino-7260767_1280.jpg");
+        background-size: cover;
+        -webkit-animation: slidein 100s;
+        animation: slidein 100s;
+
+        -webkit-animation-fill-mode: forwards;
+        animation-fill-mode: forwards;
+
+        -webkit-animation-iteration-count: infinite;
+        animation-iteration-count: infinite;
+
+        -webkit-animation-direction: alternate;
+        animation-direction: alternate;
+      }
+
+      @-webkit-keyframes slidein {
+        from {
+          background-position: top;
+          background-size: 3000px;
+        }
+        to {
+          background-position: -100px 0px;
+          background-size: 2750px;
+        }
+      }
+
+      @keyframes slidein {
+        from {
+          background-position: top;
+          background-size: 3000px;
+        }
+        to {
+          background-position: -100px 0px;
+          background-size: 2750px;
+        }
+      }
+
+      .center {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        margin: auto;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: rgba(75, 75, 250, 0.3);
+        border-radius: 3px;
+      }
+      .center h1 {
+        text-align: center;
+        color: white;
+        font-family: "Source Code Pro", monospace;
+        text-transform: uppercase;
+      }
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: center;
+      }
+
+      #dealer-cards img {
+        height: 175px;
+        width: 125px;
+        margin: 1px;
+      }
+
+      #your-cards img {
+        height: 175px;
+        width: 125px;
+        margin: 1px;
+      }
+
+      #hit {
+        width: 100px;
+        height: 50px;
+        font-size: 20px;
+      }
+
+      #stay {
+        width: 100px;
+        height: 50px;
+        font-size: 20px;
+      }
+
+    
+      /* customizable snowflake styling */
+      .snowflake {
+        color: #fff;
+        font-size: 1em;
+        font-family: Arial;
+        text-shadow: 0 0 1px #000;
+      }
+
+      @-webkit-keyframes snowflakes-fall {
+        0% {
+          top: -10%;
+        }
+        100% {
+          top: 100%;
+        }
+      }
+      @-webkit-keyframes snowflakes-shake {
+        0% {
+          -webkit-transform: translateX(0px);
+          transform: translateX(0px);
+        }
+        50% {
+          -webkit-transform: translateX(80px);
+          transform: translateX(80px);
+        }
+        100% {
+          -webkit-transform: translateX(0px);
+          transform: translateX(0px);
+        }
+      }
+      @keyframes snowflakes-fall {
+        0% {
+          top: -10%;
+        }
+        100% {
+          top: 100%;
+        }
+      }
+      @keyframes snowflakes-shake {
+        0% {
+          transform: translateX(0px);
+        }
+        50% {
+          transform: translateX(80px);
+        }
+        100% {
+          transform: translateX(0px);
+        }
+
+      }#player-name-display {
+    font-family: "Arial", sans-serif; /* Change "Arial" to your desired font family */
+    font-size: 20px; /* Change the font size as needed */
+    color: #333; /* Change the color as needed */
+    /* Add other font-related styles here */
+
+
+
+/* Style the scoreboard container */
+
+
+}#scoreboard {
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+  color: white;
+  padding: 15px;
+  text-align: center;
+  width: 300px;
+  margin: 0 auto;
+}
+
+/* Style the table */
+#scoreboard table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Style table headers */
+#scoreboard th {
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  font-weight: bold;
+}
+
+/* Style table cells */
+#scoreboard td {
+  padding: 10px;
+}
+
+/* Style the score values */
+#scoreboard td#player-wins,
+#scoreboard td#dealer-wins,
+#scoreboard td#draws {
+  background-color: #222;
+  border-radius: 5px;
+  color: white;
+}
+
+/* Center the score values */
+#scoreboard td#player-wins,
+#scoreboard td#dealer-wins,
+#scoreboard td#draws {
+  text-align: center;
+}
+
+/* Add some spacing between rows */
+#scoreboard tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+        
+  .start-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 20px; /* Adjust the margin as needed */
+}
+
+/* CSS for the "Start Game" text */
+#start-game-text {
+  margin-top: 10px; /* Adjust the margin as needed */
+  font-size: 18px; /* Adjust the font size as needed */
+  color: #fff; /* Text color */
+}     
+      .snowflake {
+        position: fixed;
+        top: -10%;
+        z-index: 9999;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        cursor: default;
+        -webkit-animation-name: snowflakes-fall, snowflakes-shake;
+        -webkit-animation-duration: 10s, 3s;
+        -webkit-animation-timing-function: linear, ease-in-out;
+        -webkit-animation-iteration-count: infinite, infinite;
+        -webkit-animation-play-state: running, running;
+        animation-name: snowflakes-fall, snowflakes-shake;
+        animation-duration: 10s, 3s;
+        animation-timing-function: linear, ease-in-out;
+        animation-iteration-count: infinite, infinite;
+        animation-play-state: running, running;
+      }
+      .snowflake:nth-of-type(0) {
+        left: 1%;
+        -webkit-animation-delay: 0s, 0s;
+        animation-delay: 0s, 0s;
+      }
+      .snowflake:nth-of-type(1) {
+        left: 10%;
+        -webkit-animation-delay: 1s, 1s;
+        animation-delay: 1s, 1s;
+      }
+      .snowflake:nth-of-type(2) {
+        left: 20%;
+        -webkit-animation-delay: 6s, 0.5s;
+        animation-delay: 6s, 0.5s;
+      }
+      .snowflake:nth-of-type(3) {
+        left: 30%;
+        -webkit-animation-delay: 4s, 2s;
+        animation-delay: 4s, 2s;
+      }
+      .snowflake:nth-of-type(4) {
+        left: 40%;
+        -webkit-animation-delay: 2s, 2s;
+        animation-delay: 2s, 2s;
+      }
+      .snowflake:nth-of-type(5) {
+        left: 50%;
+        -webkit-animation-delay: 8s, 3s;
+        animation-delay: 8s, 3s;
+      }
+      .snowflake:nth-of-type(6) {
+        left: 60%;
+        -webkit-animation-delay: 6s, 2s;
+        animation-delay: 6s, 2s;
+      }
+      .snowflake:nth-of-type(7) {
+        left: 70%;
+        -webkit-animation-delay: 2.5s, 1s;
+        animation-delay: 2.5s, 1s;
+      }
+      .snowflake:nth-of-type(8) {
+        left: 80%;
+        -webkit-animation-delay: 1s, 0s;
+        animation-delay: 1s, 0s;
+      }
+      .snowflake:nth-of-type(9) {
+        left: 90%;
+        -webkit-animation-delay: 3s, 1.5s;
+        animation-delay: 3s, 1.5s;
+      }
+      /* Demo Purpose Only*/
+      .demo {
+        font-family: "Raleway", sans-serif;
+        color: #fff;
+        display: block;
+        margin: 0 auto;
+        padding: 15px 0;
+        text-align: center;
+      }
+      .demo a {
+        font-family: "Raleway", sans-serif;
+        color: #000;
+      }
+    </style>
+
+    <!-- The <body> element defines the document's body, and is a container for all the visible contents that will be rendered by the browser.  -->
+
+    <!-- The <h1> element defines a large heading. There are 6 pre-set header elements, <h1> to <h6> -->
+  
+
+    <!-- The <div> tag defines a division or a section in an HTML document, and is commonly use as a "container" for nested HTML elements. -->
+    <div id="container">
+      <!-- The <p> tag defines a paragraph element. -->
+         <div id="welcome-page">
+        <h1>Welcome to the Blackjack Game!</h1>
+      <form id="player-name-form">
+        
+  <input type="text" id="playerNameInput" placeholder="Enter your name" />
+
+    <button class="glow-on-hover" type="submit">Enter</button>
+      </form>
+      <div id="welcome-message" class="welcome-message" style="display: none;"></div>
+  <div id="player-name-display"></div>
+        <!-- Game Display (hidden initially) -->
+        <div id="game-display" style="display: none">
+          <!-- ... (existing game content) ... -->
+        </div>
+<img id="hidden" src="" style="display: none;">
+      <div class="start-container">
+    <button class="glow-on-hover" id="start-game">Start</button>
+</div>
+      <button class="glow-on-hover" type="button" value="Reset"id="resetBtn" onclick="reset()"style="display: none;"
+      >
+        Reset
+      </button>
+
+      
+      <!-- The self-closing <br /> tag represents a line break - a line's worth of spacing before dispalying the next element. -->
+      <br />
+      <!-- The <button> tag represents.. you guessed it! a button. -->
+      <h2>Dealer: <span id="dealer-sum"></span></h2>
+      <div id="dealer-cards">
+       <img id="hidden" src="./cards/Back.PNG" />
+      </div>
+
+      <h2>You: <span id="your-sum"></span></h2>
+      <div id="your-cards"></div>
+
+      <br />
+      <button class="glow-on-hover" button id="hit" type="button">Hit</button>
+      <button class="glow-on-hover" button id="stay" type="button">
+        Stand
+      </button>
+      <p id="results"></p>
+      <p id="message"></p>
+<div id="scoreboard">
+  <h2>Scoreboard</h2>
+  <table>
+    <tr>
+      <th>Player Wins</th>
+      <th>Dealer Wins</th>
+      <th>Draws</th>
+    </tr>
+    <tr>
+      <td id="player-wins">0</td>
+      <td id="dealer-wins">0</td>
+      <td id="draws">0</td>
+    </tr>
+  </table>
+</div>
+    <div class="snowflakes" aria-hidden="true">
+      <div class="snowflake">❅</div>
+      <div class="snowflake">❅</div>
+      <div class="snowflake">❆</div>
+      <div class="snowflake">❄</div>
+      <div class="snowflake">❅</div>
+      <div class="snowflake">❆</div>
+      <div class="snowflake">❄</div>
+      <div class="snowflake">❅</div>
+      <div class="snowflake">❆</div>
+      <div class="snowflake">❄</div>
+    </div>
+    <!-- Everything below this is incorporating JavaScript programming logic into the webpage. -->
+    <!-- The script tag encloses JavaScript syntax for the browser to interpret programtically -->
+    <!-- The following line imports all code written in the script.js file -->
+    <script src="script.js"></script>
+    <!-- Define button click functionality -->
+  
+    
+    </script>
+  </body>
+</html>
